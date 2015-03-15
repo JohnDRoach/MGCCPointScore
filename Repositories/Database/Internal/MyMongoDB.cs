@@ -1,23 +1,24 @@
-﻿using MGCCPointScore.Models;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
+using Repositories.Identity;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web;
 
-namespace MGCCPointScore.Database
+namespace Repositories.Database
 {
-    public static class MyMongoDB
+    internal static class MyMongoDB
     {
-        private const string UserCollectionString = "User";
+        private const string UserCollectionString = "AspNetUsers";
         private static MongoDatabase database = null;
 
-        public static MongoCollection<ApplicationUser> UserCollection
+        // TODO: Can this be removed?
+        public static MongoCollection<MyIdentityUser> UserCollection
         {
             get
             {
-                return database.GetCollection<ApplicationUser>(UserCollectionString);
+                return database.GetCollection<MyIdentityUser>(UserCollectionString);
             }
         }
 

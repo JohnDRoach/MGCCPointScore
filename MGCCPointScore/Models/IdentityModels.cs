@@ -1,17 +1,9 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-
-namespace MGCCPointScore.Models
+﻿namespace MGCCPointScore.Models
 {
-    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
-    public class ApplicationUser : IdentityUser
-    {
-    }
+    using Repositories.Identity;
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
+    public class ApplicationUser : MyIdentityUser
     {
-        public ApplicationDbContext()
-            : base("DefaultConnection")
-        {
-        }
     }
 }

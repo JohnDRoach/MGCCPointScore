@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "ScoreManagement";
+}
+
+<h2>ScoreManagement</h2>
+
+<li>@Html.ActionLink("2015 Events", "MemberList", "Members", routeValues: null, htmlAttributes: new { id = "memberLink" })</li>
+<li>@Html.ActionLink("2016 Events", "MemberList", "Members", routeValues: null, htmlAttributes: new { id = "memberLink" })</li>
+<li>@Html.ActionLink("2017 Events", "MemberList", "Members", routeValues: null, htmlAttributes: new { id = "memberLink" })</li>
+
+<h3>Perpetual</h3>
+<ul>
+    <li>@Html.ActionLink("Members", "MemberList", "Members", routeValues: null, htmlAttributes: new { id = "memberLink" })</li>
+</ul>
