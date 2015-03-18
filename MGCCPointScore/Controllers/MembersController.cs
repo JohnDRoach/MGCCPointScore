@@ -25,7 +25,8 @@ namespace MGCCPointScore.Controllers
         {
             IEnumerable<ClubMember> currentMembers = memberRepo.AllMembers;
 
-            return View(currentMembers.Select(x => new ClubMemberViewModel { Name = x.Name, Id = x.Id }));
+            //return View(currentMembers.Select(x => new ClubMemberViewModel { Name = x.Name, Id = x.Id }));
+            return View(currentMembers.Select(x => new ClubMemberViewModel(x)));
         }
 
         //
@@ -42,8 +43,8 @@ namespace MGCCPointScore.Controllers
         {
             try
             {
-                var member = new ClubMember(model.Name, Sex.Other, "");
-                memberRepo.Add(member);
+                //var member = new ClubMember(model.Name, Sex.Other, "");
+                memberRepo.Add(model.Retrieve());
                 return Redirect("MemberList");
             }
             catch (DuplicateMemberNameException)
