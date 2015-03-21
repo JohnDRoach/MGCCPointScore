@@ -3,6 +3,7 @@ using Repositories.Members;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -93,6 +94,42 @@ namespace MGCCPointScore.Controllers
                 ModelState.AddModelError("", string.Format("'{0}' already exists in the database.", model.Name));
                 return View("Edit", model);
             }
+        }
+
+        // GET: /Members/Delete/GUID
+        public ActionResult Delete(Guid? id)
+        {
+            if (id == null || id == Guid.Empty)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            try
+            {
+                ClubMember member = memberRepo.GetFromId(id.Value);
+                return View(new ClubMemberViewModel(member));
+            }
+            catch (MemberNotFoundException)
+            {
+                return HttpNotFound();
+            }
+        }
+
+        // POST: /Members/Delete/GUID
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(Guid id)
+        {
+            try
+            {
+                ClubMember member = memberRepo.GetFromId(id);
+                memberRepo.Delete(member);   
+            }
+            catch (MemberNotFoundException)
+            {
+                // TODO: Maybe log here??
+            }
+            return RedirectToAction("MemberList", "Members");
         }
     }
 }
